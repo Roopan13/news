@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'getNews/css/bootstrap.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'getNews/css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-3">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1 text">Get News</span>
+        </div>
+      </nav>
+      <h3 class="alert alert-secondary text-center">Tech World</h3>
+<div class="container-fluid">
+    <div class="row">
+        {% for x in api.articles %}
+    <div class="col-sm-3">
+        <div class="card" style="width: 22rem; height: 450px;">
+            <img src="{{x.urlToImage}}" class="card-img-top" alt="{{x.source.name}}" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title">{{x.title}}</h5>
+              <p class="card-text">{{x.description|truncatechars:150}}</p>
+              <a href="{{x.url}}" target="_blank" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+          <hr style="color: white;">
+    </div>
+    {% endfor %}
+    </div> 
+</div>
+    <script src="{% static 'getNews/js/jquery.js' %}"></script>
+    <script src="{% static 'getNews/js/popper.js' %}"></script>
+    <script src="{% static 'getNews/js/bootstrap.js' %}"></script>
+</body>
+
+</html>
